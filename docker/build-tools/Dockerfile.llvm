@@ -1,0 +1,11 @@
+FROM centos:7 AS builder
+
+ENV BUILD_DIR=/root/clang-llvm-build
+
+COPY ./build_deps_centos.sh /root
+RUN /root/build_deps_centos.sh
+
+COPY ./build_clang_llvm.sh /home/build
+RUN "/home/build/build_clang_llvm.sh"
+
+ENTRYPOINT bash
